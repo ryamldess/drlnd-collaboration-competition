@@ -24,6 +24,21 @@ buffer_size = 100000
 batch_size = 64
 seed = 2
 
+The actor network consists of the following structure:
+
+- 512 linear layers with size of 256 + 33 (for state space size).
+- A linear output layer with 512 + 33 inputs and outputs corresponding to the number of actions.
+
+It uses torch.nn.BatchNorm1d for normalization.
+
+The critic network consists of the following structure:
+
+- 1 linear layer with size of 256 + 33 (for state space size) + number of actions .
+- 511 linear layers with size of 256 + 33 (for state space size).
+- A linear output layer with 512 + 33 inputs and outputs corresponding to the number of actions.
+
+It uses torch.nn.BatchNorm1d for normalization and dropout with a value of 0.2.
+
 ### Room for improvement
 
 The main thing I would improve is simply to get PPO working, as it should converge faster with a smoother curve.
